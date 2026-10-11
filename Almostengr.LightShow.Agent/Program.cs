@@ -1,7 +1,7 @@
 using Almostengr.LightShow.Agent.Services;
 using Almostengr.FalconPiPlayer.ApiClient.Common.Shared;
 using Almostengr.LightShow.Agent.Services.AppSettingsManager;
-using Almostengr.LightShow.Agent.Services.CurrentStatusManager;
+using Almostengr.LightShow.Agent.Services.RunModeManager;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +19,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient();
 builder.Services.AddAppSettingsServices();
-builder.Services.AddCurrentStatusServices();
+builder.Services.AddRunModeServices();
 builder.Services.AddFalconPiPlayerApiClientServices(builder.Configuration);
 
 builder.Services.AddHostedService<AgentWorker>();

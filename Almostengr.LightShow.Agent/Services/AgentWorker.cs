@@ -2,7 +2,7 @@ using Almostengr.Common.Common.DomainServices.Results;
 using Almostengr.FalconPiPlayer.ApiClient.Fppd.DomainServices.Interfaces;
 using Almostengr.FalconPiPlayer.ApiClient.Fppd.DomainServices.Resources;
 using Almostengr.LightShow.Agent.Services.AppSettingsManager.Domain;
-using Almostengr.LightShow.Agent.Services.CurrentStatusManager.Domain;
+using Almostengr.LightShow.Agent.Services.RunModeManager.Domain;
 using Almostengr.LightShow.Common;
 using Almostengr.LightShow.Web.ApiClient;
 using Microsoft.Extensions.Options;
@@ -15,7 +15,7 @@ public sealed class AgentWorker : BackgroundService
     private readonly ILogger<AgentWorker> _logger;
     private readonly IStatusHistoryClient _statusHistoryClient;
     private AppSettings.AgentSettings _agentSettings;
-    private StatusHistoryResource _lastResource = null;
+    private StatusHistoryResource _lastResource;
 
     public AgentWorker(
         IFppdClient fppdClient,
@@ -25,6 +25,7 @@ public sealed class AgentWorker : BackgroundService
     )
     {
         _fppdClient = fppdClient;
+        _lastResource = null;
         _logger = logger;
         options.OnChange(agentsettings =>
         {
@@ -37,16 +38,9 @@ public sealed class AgentWorker : BackgroundService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            if (!RunMode.IsOnline)
-            {
-                await DelayAsync(stoppingToken);
-                continue;
-            }
-
             try
             {
                 FppdStatusResource fppStatus = await _fppdClient.GetStatusAsync();
-
                 if (fppStatus == null)
                 {
                     await DelayAsync(stoppingToken);
@@ -85,7 +79,7 @@ public sealed class AgentWorker : BackgroundService
 
     private async Task<Result<int>> GetNextRequestAsync()
     {
-        if (!RunMode.AllowRequests)
+        if (RunMode.ModeOption == DisplayModeOption.OnlineAcceptingRequests)
         {
             return Result<int>.Failure(string.Empty);
         }
@@ -104,8 +98,8 @@ public sealed class AgentWorker : BackgroundService
         {
             CurrentSequence = statusResource.CurrentSequence,
             CurrentSong = statusResource.CurrentSong,
-            AllowRequests = RunMode.AllowRequests,
-            IsOnline = RunMode.IsOnline,
+            Warnings = 0,
+            ModeOption = RunMode.ModeOption,
         };
     }
 

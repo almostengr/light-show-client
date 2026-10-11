@@ -1,6 +1,6 @@
 ﻿namespace Almostengr.LightShow.Web.ApiClient.IntegrationTests;
 
-public class UnitTest1
+public class StatusHistoryClientTests
 {
     [Fact]
     public void Test1()

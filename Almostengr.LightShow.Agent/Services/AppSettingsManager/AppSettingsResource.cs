@@ -3,7 +3,7 @@ using Almostengr.LightShow.Agent.Services.AppSettingsManager.Domain;
 
 namespace Almostengr.LightShow.Agent.Services.AppSettingsManager;
 
-public class AppSettingsResource : Resource
+public sealed class AppSettingsResource : Resource
 {
     public string PlayerUrl { get; set; }
     public string WebsiteUrl { get; set; }
