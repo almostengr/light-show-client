@@ -2,6 +2,7 @@ using Almostengr.LightShow.Agent.Services;
 using Almostengr.FalconPiPlayer.ApiClient.Common.Shared;
 using Almostengr.LightShow.Agent.Services.AppSettingsManager;
 using Almostengr.LightShow.Agent.Services.RunModeManager;
+using Almostengr.LightShow.Web.ApiClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ builder.Services.AddHttpClient();
 builder.Services.AddAppSettingsServices();
 builder.Services.AddRunModeServices();
 builder.Services.AddFalconPiPlayerApiClientServices(builder.Configuration);
+builder.Services.AddLightShowWebServices(builder.Configuration);
 
 builder.Services.AddHostedService<AgentWorker>();
 
