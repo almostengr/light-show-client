@@ -1,4 +1,5 @@
 ﻿const modalContenlElement = document.getElementById("modalContent");
+const runModeElement = document.getElementById("runModeStatus");
 const modalElement = new bootstrap.Modal(document.getElementById("modal"), {
     keyboard: false,
 });
@@ -30,6 +31,22 @@ function addModalListeners() {
     });
 }
 
+async function refreshRunModeStatus() {
+    try {
+        const response = await fetch("/home/runmode");
+        if (!response.ok) {
+            throw new Error(response);
+        }
+
+        runModeElement.innerHTML = response.body;
+    }
+    catch (error) {
+        console.log(error.message);
+    }
+
+    setTimeout(refreshRunModeStatus, 3000);
+}
+
 async function submitModalAsync(submitButton) {
     const formElement = document.getElementById("modalForm");
     const formMethod = formElement.getAttribute("method");
@@ -53,5 +70,5 @@ async function submitModalAsync(submitButton) {
     modalContenlElement.innerHTML = response.body;
 }
 
-
 addModalListeners();
+refreshRunModeStatus();

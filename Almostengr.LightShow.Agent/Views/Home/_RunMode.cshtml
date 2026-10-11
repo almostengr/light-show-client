@@ -1,0 +1,15 @@
+@using Almostengr.LightShow.Agent.Services.RunModeManager.Domain
+@using Almostengr.LightShow.Common
+
+    @if (RunMode.ModeOption == DisplayModeOption.OnlineRejectingRequests)
+{
+    <span class="badge text-bg-warning">Online, Rejecting Requests</span>
+}
+else if (RunMode.ModeOption == DisplayModeOption.OnlineAcceptingRequests)
+{
+    <span class="badge text-bg-success">Online, Accepting Requests</span>
+}
+else
+{
+    <span class="badge text-bg-danger">Offline</span>
+}
