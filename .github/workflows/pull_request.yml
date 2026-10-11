@@ -1,0 +1,28 @@
+name: Test Pull Request
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@main
+      with:
+        dotnet-version: 10.x
+
+    - name: Restore
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build -c Release --no-restore
+
+    - name: Test
+      run: dotnet test -c Release --no-build

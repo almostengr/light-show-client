@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Update="scripts/worker.service" CopyToOutputDirectory="PreserveNewest" />
     <None Update="scripts/install_fpp.sh" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="README.md" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>
