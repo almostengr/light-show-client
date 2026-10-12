@@ -11,7 +11,7 @@ public class StatusHistoryClient : IStatusHistoryClient
     private readonly HttpClient _httpClient;
 
     public StatusHistoryClient(
-        IOptions<LightShowSettings> options,
+        IOptionsSnapshot<LightShowSettings> options,
         HttpClient httpClient
     )
     {

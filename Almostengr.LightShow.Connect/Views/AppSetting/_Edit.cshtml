@@ -1,0 +1,37 @@
+@model AppSettingsViewModel
+
+<div class="modal-header">
+    <h5 class="modal-title">Manage Settings</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form action="/appsetting/edit" method="post">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <div class="mb-3">
+            <label for="PlayerUrl" class="form-label required">Player Url</label>
+            <div>
+                <input type="text" required asp-for="@Model.PlayerUrl" class="form-control" />
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="WebsiteUrl" class="form-label required">Website Url</label>
+            <div>
+                <input type="text" required asp-for="@Model.WebsiteUrl" class="form-control" />
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="WebsiteApiKey" class="form-label required">Website Api Key</label>
+            <div>
+                <input type="text" required asp-for="@Model.WebsiteApiKey" class="form-control" />
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="WorkerSleepInterval" class="form-label required">Worker Sleep Interval</label>
+            <div>
+                <input type="number" required asp-for="@Model.WorkerSleepInterval" class="form-control" />
+            </div>
+        </div>
+    </form>
+</div>
+<partial name="_ModalFooter" />

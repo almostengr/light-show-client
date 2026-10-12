@@ -1,7 +1,5 @@
-using Almostengr.Common.Common.DomainServices.Results;
 using Almostengr.Common.Common.Infrastructure;
 using Almostengr.LightShow.Common;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 
 namespace Almostengr.LightShow.Web.ApiClient;
@@ -12,7 +10,7 @@ public sealed class SequenceRequestClient : ISequenceRequestClient
     private readonly HttpClient _httpClient;
 
     public SequenceRequestClient(
-        IOptions<LightShowSettings> options,
+        IOptionsSnapshot<LightShowSettings> options,
         HttpClient httpClient
     )
     {

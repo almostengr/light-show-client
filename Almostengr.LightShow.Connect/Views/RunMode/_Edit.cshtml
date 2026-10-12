@@ -1,0 +1,20 @@
+@using Almostengr.LightShow.Common
+@model RunModeViewModel
+
+<div class="modal-header">
+    <h5 class="modal-title">Manage Run Mode</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form action="/runmode/edit" method="post">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <div class="mb-3">
+            <label for="ModeId" class="form-label required">Run Mode</label>
+            <select class="form-select" asp-for="@Model.ModeId"
+                    asp-items="@Html.GetEnumSelectList<DisplayModeOption>()">
+            </select>
+        </div>
+    </form>
+</div>
+<partial name="_ModalFooter" />

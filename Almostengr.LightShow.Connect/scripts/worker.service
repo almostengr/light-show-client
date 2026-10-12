@@ -1,0 +1,12 @@
+[Unit]
+Description=Light Show
+After=network.target
+ 
+[Service]
+Type=simple
+ExecStart=/home/fpp/lightshow/Almostengr.LightShow.Connect
+Restart=always
+RestartSec=5
+ 
+[Install]
+WantedBy=multi-user.target
