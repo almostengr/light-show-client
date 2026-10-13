@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Almostengr.LightShow.Common\Almostengr.LightShow.Common.csproj" />
+    <ProjectReference Include="..\Almostengr.LightShow.WebApiClient\Almostengr.LightShow.WebApiClient.csproj" />
+    <ProjectReference Include="..\Almostengr.FalconPiPlayer.ApiClient\Almostengr.FalconPiPlayer.ApiClient.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

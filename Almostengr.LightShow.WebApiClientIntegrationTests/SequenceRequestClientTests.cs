@@ -1,0 +1,3 @@
+namespace Almostengr.LightShow.WebApiClientIntegrationTests;
+
+public class SequenceRequestClientTests;
