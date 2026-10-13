@@ -64,7 +64,7 @@ async function submitModalFormAsync(submitButton) {
         return;
     }
 
-    submitButton.value = "Please wait...";
+    submitButton.innerText = "Please wait...";
     submitButton.disabled = true;
 
     const formMethod = formElement.getAttribute("method");
@@ -94,7 +94,7 @@ async function submitModalFormAsync(submitButton) {
         console.error(error.message);
     }
 
-    submitButton.value = "Save Changes";
+    submitButton.innerText = "Save Changes";
     submitButton.disabled = true;
 }
 
